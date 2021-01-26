@@ -59,7 +59,13 @@ public class ClientHandler {
                             break;
                         }
 
-                        server.broadcastMsg(this, str);
+                        if ((str.split("\\s")[0]).equals(Command.PRIVATE_MSG)) {
+                            server.broadcastPrivateMsg (this, str.split("\\s")[1],
+                                    str.split("\\s") [2]);
+                        }
+
+                        else
+                            server.broadcastMsg(this, str);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -89,3 +95,4 @@ public class ClientHandler {
         return nickname;
     }
 }
+

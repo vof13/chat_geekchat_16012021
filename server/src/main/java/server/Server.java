@@ -56,4 +56,16 @@ public class Server {
     public AuthService getAuthService() {
         return authService;
     }
+
+    public void broadcastPrivateMsg(ClientHandler clientHandler, String nick, String msg){
+        for (ClientHandler c : clients) {
+            if (c.getNickname().equals(nick)) {
+                c.sendMsg(String.format("private message from [ %s ]: %s", nick, msg));
+                clientHandler.sendMsg(String.format("private to [ %s ]: %s ", c.getNickname(), msg));
+            }
+        }
+
+
+
+    }
 }
